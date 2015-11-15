@@ -54,3 +54,6 @@ tramp
 .\#*
 
 conf/config
+
+conf/id_rsa
+conf/id_rsa.pub
