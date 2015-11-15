@@ -10,6 +10,14 @@ if [ -e $TMP ]; then
     rm $TMP -rf
 fi
 
+# Ensure Latest Text-Assets
+cd $TEXT_ASSETS
+git pull
+
+# Ensure Latest Modules
+cd /repos/scl-mods/
+git pull
+
 mkdir $TMP
 cd $TMP
 
@@ -58,5 +66,9 @@ done
 for MODULE in $@; do
     cd $TMP/$MODULE/scl-mod-merge-base
     git pull --rebase origin $BRANCH
+    if [[ $? != 0 ]]; then
+	>2& echo "Could not merge in $MODULE due to a conflict."
+	exit $?
+    fi
     git push origin $BRANCH
 done    
