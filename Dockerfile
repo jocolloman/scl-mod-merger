@@ -11,6 +11,7 @@ ADD conf/id_rsa /root/.ssh/id_rsa
 RUN eval "$(ssh-agent -s)"; ssh-add /root/.ssh/id_rsa
 RUN git config --global user.email "gamepsychos@gmail.com"
 RUN git config --global user.name "jocolloman"
+RUN git config --global push.default simple
 WORKDIR /repos/
 RUN git clone git@github.com:jocolloman/scl-mods
 RUN git clone git@github.com:jocolloman/SCL-Text-Assets
