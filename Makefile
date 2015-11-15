@@ -1,8 +1,9 @@
 ConfPath = $(shell pwd)/conf
 
-TAG = scl-rating:latest
+IMAGE_NAME = scl-mod-merge
+TAG = $(IMAGE_NAME):latest
 
-RUN = docker run --name scl-mod-merger -i -t -v $(SharedPath):/conf --rm --net=host $(TAG)
+RUN = docker run --name $(IMAGE_NAME) -i -t -v $(ConfPath):/conf --rm --net=host $(TAG)
 
 all:
 	docker build -t $(TAG) .
